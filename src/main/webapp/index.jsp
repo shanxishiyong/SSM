@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
     <body>
-        <form action="/user/insert" name="fm" method="post">
+        <form action="${pageContext.request.contextPath}/user/insert" name="fm" method="post">
             name:<input type="text" name="name"/>
             workMes:<input type="text" name="workMes"/>
             age:<input type="number" name="age" />

@@ -7,5 +7,5 @@ public interface UserService {
     /**
      * 单个数据插入
      */
-    public int insert(User user);
+    public int insertUser(User user);
 }

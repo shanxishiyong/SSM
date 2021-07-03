@@ -4,7 +4,7 @@ public class User {
     /**
      * 用户ID
      */
-    private Integer id;
+    private String id;
 
     /**
      * 用户姓名
@@ -21,14 +21,17 @@ public class User {
      */
     private String workMes;
 
-    public User(Integer id, String name, Integer age, String workMes) {
+    public User() {
+    }
+
+    public User(String id, String name, Integer age, String workMes) {
         this.id = id;
         this.name = name;
         this.age = age;
         this.workMes = workMes;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -44,7 +47,7 @@ public class User {
         this.workMes = workMes;
     }
 
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
@@ -63,7 +66,7 @@ public class User {
     @Override
     public String toString() {
         return "User{" +
-                "id=" + id +
+                "id='" + id + '\'' +
                 ", name='" + name + '\'' +
                 ", age=" + age +
                 ", workMes='" + workMes + '\'' +

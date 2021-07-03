@@ -2,13 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.sy.dao.UserDao">
     <resultMap id="BaseResultMap" type="com.sy.entity.User">
-        <id column="id" jdbcType="INTEGER" property="id" />
+        <id column="id" jdbcType="VARCHAR" property="id" />
         <result column="name" jdbcType="VARCHAR" property="name" />
-        <result column="workmes" jdbcType="VARCHAR" property="workMes" />
+        <result column="work_mes" jdbcType="VARCHAR" property="workMes" />
         <result column="age" jdbcType="INTEGER" property="age" />
     </resultMap>
     <sql id="Base_Column_List">
-        id,name,workMes,age
+        id,name,work_mes,age
     </sql>
 
     <insert id="insertUser" parameterType="com.sy.entity.User">
@@ -21,7 +21,7 @@
                 name,
             </if>
             <if test="workMes != null">
-                workMes,
+                work_mes,
             </if>
             <if test="age != null">
                 age,
@@ -29,7 +29,7 @@
         </trim>
         <trim prefix="value (" suffix=")" suffixOverrides=",">
             <if test="id != null">
-                #{id,jdbcType=INTEGER},
+                #{id,jdbcType=VARCHAR},
             </if>
             <if test="name != null">
                 #{name,jdbcType=VARCHAR},
@@ -42,7 +42,24 @@
             </if>
         </trim>
     </insert>
-    <select id="selectById" resultMap="BaseResultMap">
-        select <include refid="BaseResultMap" /> from USER where id=#{id,jdbcType=INTEGER}
+    <select id="selectUserByCondition" resultMap="BaseResultMap" parameterType="com.sy.entity.User">
+        select <include refid="Base_Column_List" />
+        from USER
+        <where>
+            1=1
+            <if test="id != null">
+             and id=#{id,jdbcType=VARCHAR}
+            </if>
+            <if test="age != null">
+                and age=#{age,jdbcType=INTEGER}
+            </if>
+            <if test="name != null">
+                and name=#{name,jdbcType=VARCHAR}
+            </if>
+        </where>
+    </select>
+    <select id="selectUserById" resultMap="BaseResultMap" parameterType="String">
+        select <include refid="Base_Column_List" />
+        from USER where id=#{id,jdbcType=VARCHAR}
     </select>
 </mapper>

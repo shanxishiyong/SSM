@@ -3,6 +3,7 @@ package com.sy.service.Imp;
 import com.sy.dao.UserDao;
 import com.sy.entity.User;
 import com.sy.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -17,8 +18,11 @@ public class UserServiceImp implements UserService {
         this.userDao = userDao;
     }
 
-    public int insert(User user) {
-        int m = userDao.insert(user);
+//    @Autowired
+//    private UserDao userDao;   //自动装配实例，与上面@Resource 然后set等价
+
+    public int insertUser(User user) {
+        int m = userDao.insertUser(user);
         return m;
     }
 }
